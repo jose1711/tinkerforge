@@ -19,6 +19,10 @@
 # notes:
 #  make sure to adjust uids in main() before trying this out 
 #  if you don't need response, socat can be replaced with printf "${data}" >/dev/tcp/${host}/${port}
+#  if you do need it, it may still be possible with making a fd
+#    exec 3<>/dev/tcp/${host}/${port}
+#    printf "${data}" >&3; cat <&3 | dd bs=1 count=bytes_expected_on_output 2>/dev/null | ..
+#    exec 3>&-
 #
 #########################################################################
 # this is a default value, if you want to enable debugging at runtime
